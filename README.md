@@ -44,11 +44,6 @@ Because this project is configured as a package in `pyproject.toml`, you do not 
 uv run consumeapi
 ```
 
-**Run with a specific location argument:**
-```bash
-uv run consumeapi "Tokyo"
-```
-
 ##  Project Structure
 
 * `main.py` - The core application code and API consumption logic.

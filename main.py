@@ -1,34 +1,23 @@
-import requests
+from app.services.weatherservice import WeatherService
+
 
 def main():
-    print("Fetching the current weather for Hyderabad...\n")
-    
-    url = "https://api.open-meteo.com/v1/forecast"
-    
-    params = {
-        "latitude": 17.3850,
-        "longitude": 78.4867,
-        "current_weather": True
-    }
-    
+
+    service = WeatherService()
+
     try:
-        response = requests.get(url, params=params)
-        response.raise_for_status() 
-        
-        weather_data = response.json()
-        
-        current = weather_data.get("current_weather", {})
-        temp = current.get("temperature")
-        wind = current.get("windspeed")
-        
-        print("  Live Hyderabad Weather Report:")
-        print(f"Temperature: {temp}°C")
-        print(f"Wind Speed:  {wind} km/h")
-        
-    except requests.exceptions.RequestException as e:
-        print(f"Oops! Something went wrong trying to reach the internet: {e}")
+        weather = service.get_current_weather(
+            latitude=17.3850,
+            longitude=78.4867,
+        )
+
+        print("Live Hyderabad Weather Report:")
+        print(f"Temperature: {weather['temperature']}°C")
+        print(f"Wind Speed: {weather['windspeed']} km/h")
+
+    except Exception as error:
+        print(error)
+
 
 if __name__ == "__main__":
     main()
-
-

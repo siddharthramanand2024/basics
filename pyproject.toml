@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-weatherapi = "main:main"
+weatherapi = "app.main:main"
 
 [tool.uv]
 package = true

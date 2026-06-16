@@ -1,6 +1,6 @@
 import argparse
 
-from weatherservice import WeatherService
+from app.services.weather_service import WeatherService
 
 
 def main():

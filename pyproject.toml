@@ -1,4 +1,3 @@
-
 [project]
 name = "basics"
 version = "0.1.0"
@@ -6,13 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = "==3.14.5"
 dependencies = [
+    "autopep8>=2.3.2",
     "requests==2.34.2",
 ]
 
 [project.scripts]
-consumeapi = "main:main"
+weatherapi = "app.main:main"
 
 [tool.uv]
 package = true
-
-

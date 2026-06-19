@@ -9,7 +9,7 @@ class GeoService:
 
     def __init__(self):
 
-        self.geo_url = (
+        self._geo_url = (
             "https://geocoding-api.open-meteo.com/v1/search"
         )
 
@@ -19,7 +19,7 @@ class GeoService:
     ):
 
         response = requests.get(
-            self.geo_url,
+            self._geo_url,
             params={
                 "name": location,
                 "count": 1,

@@ -7,7 +7,7 @@ class BaseWeatherService(
     WeatherService
 ):
 
-    def get_current_weather(
+    def get_weather_data(
         self,
         latitude,
         longitude,

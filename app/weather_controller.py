@@ -138,7 +138,7 @@ class WeatherController:
 
                 forecasts = (
                     self.forecast_weather_service
-                    .get_forecast(
+                    .get_weather_data(
                         latitude,
                         longitude,
                         args.date,
@@ -155,7 +155,7 @@ class WeatherController:
 
                 weather = (
                     self.current_weather_service
-                    .get_current_weather(
+                    .get_weather_data(
                         latitude,
                         longitude,
                     )

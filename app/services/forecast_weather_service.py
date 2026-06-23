@@ -12,7 +12,7 @@ class ForecastWeatherService(
     WeatherService
 ):
 
-    def get_forecast(
+    def get_weather_data(
         self,
         latitude,
         longitude,
@@ -53,17 +53,21 @@ class ForecastWeatherService(
         forecasts = []
 
         for index in range(
-            len(daily["time"])
+            len(
+                daily["time"]
+            )
         ):
 
             forecasts.append(
                 {
                     "date":
                         daily["time"][index],
+
                     "max_temp":
                         daily[
                             "temperature_2m_max"
                         ][index],
+
                     "min_temp":
                         daily[
                             "temperature_2m_min"

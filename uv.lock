@@ -145,9 +145,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "autopep8", specifier = ">=2.3.2" },
-    { name = "jupyter", specifier = ">=1.1.1" },
-    { name = "pandas", specifier = ">=3.0.3" },
+    { name = "autopep8", specifier = "==2.3.2" },
+    { name = "jupyter", specifier = "==1.1.1" },
+    { name = "pandas", specifier = "==3.0.3" },
     { name = "requests", specifier = "==2.34.2" },
 ]
 

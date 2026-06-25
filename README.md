@@ -1,4 +1,4 @@
-# 🌦️ Weather Dataset & Analytics
+#  Weather Dataset & Analytics
 
 A production-quality weather data analytics application built with
 **Python**, **Faker**, **Pandas**, and **Streamlit**.
@@ -9,7 +9,7 @@ dashboard for exploring weather patterns across Indian cities.
 
 ---
 
-## 📋 Project Overview
+##  Project Overview
 
 | Component | Description |
 |-----------|-------------|
@@ -19,7 +19,7 @@ dashboard for exploring weather patterns across Indian cities.
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 basics/
@@ -39,7 +39,7 @@ basics/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -80,7 +80,7 @@ uv run jupyter notebook weather_analysis.ipynb
 
 ---
 
-## 📊 Dataset Details
+##  Dataset Details
 
 | Field | Description | Example |
 |-------|-------------|---------|
@@ -101,7 +101,7 @@ uv run jupyter notebook weather_analysis.ipynb
 
 ---
 
-## 🔬 Analysis Notebook Sections
+##  Analysis Notebook Sections
 
 1. **Reading** — `read_csv()`
 2. **Inspection** — `head()`, `tail()`, `sample()`, `shape`,
@@ -123,7 +123,7 @@ uv run jupyter notebook weather_analysis.ipynb
 
 ---
 
-## 📱 Streamlit Dashboard
+##  Streamlit Dashboard
 
 The dashboard provides five interactive sections:
 
@@ -136,7 +136,7 @@ The dashboard provides five interactive sections:
 
 ---
 
-## 🛠️ Technologies
+## Technologies
 
 - **Python 3.14**
 - **Faker** — Synthetic data generation
@@ -148,19 +148,3 @@ The dashboard provides five interactive sections:
 - **uv** — Package management
 
 ---
-
-## 🎯 OOP Concepts Demonstrated
-
-| Concept | Implementation |
-|---------|---------------|
-| **Encapsulation** | Private methods (`_generate_temperature`, etc.) |
-| **Abstraction** | Public API (`generate_dataset()`, `save_dataset()`) |
-| **Clean Design** | Single Responsibility, modular functions |
-
----
-
-## 📝 Previous Assignment
-
-The `app/` directory contains the completed Weather CLI application
-using Open-Meteo APIs (already merged to main). That assignment
-demonstrated encapsulation, inheritance, abstraction, and polymorphism.

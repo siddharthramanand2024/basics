@@ -19,6 +19,15 @@ st.set_page_config(
 )
 
 
+def get_ordinal(n):
+    """Convert an integer into its ordinal representation."""
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    else:
+        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+    return str(n) + suffix
+
+
 @st.cache_data
 def load_dataset():
     """Load and prepare the weather dataset."""
@@ -352,10 +361,11 @@ elif section == "Ranking":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader(f"Top {n_records} Highest Temperatures")
+        st.subheader(f"Exact {get_ordinal(n_records)} Highest Temperature")
         top_n = df.nlargest(n_records, "temperature")
+        nth_max_df = top_n.iloc[[-1]]
         st.dataframe(
-            top_n[
+            nth_max_df[
                 ["date", "time", "city", "temperature",
                  "humidity", "pressure"]
             ],
@@ -364,7 +374,7 @@ elif section == "Ranking":
         )
         nth_max = top_n.iloc[-1]
         st.info(
-            f"The {n_records}th highest temperature is "
+            f"The {get_ordinal(n_records)} highest temperature is "
             f"**{nth_max['temperature']}°C** "
             f"in **{nth_max['city']}** on "
             f"**{nth_max['date'].strftime('%Y-%m-%d')}** "
@@ -372,10 +382,11 @@ elif section == "Ranking":
         )
 
     with col2:
-        st.subheader(f"Top {n_records} Lowest Temperatures")
+        st.subheader(f"Exact {get_ordinal(n_records)} Lowest Temperature")
         bottom_n = df.nsmallest(n_records, "temperature")
+        nth_min_df = bottom_n.iloc[[-1]]
         st.dataframe(
-            bottom_n[
+            nth_min_df[
                 ["date", "time", "city", "temperature",
                  "humidity", "pressure"]
             ],
@@ -384,7 +395,7 @@ elif section == "Ranking":
         )
         nth_min = bottom_n.iloc[-1]
         st.info(
-            f"The {n_records}th lowest temperature is "
+            f"The {get_ordinal(n_records)} lowest temperature is "
             f"**{nth_min['temperature']}°C** "
             f"in **{nth_min['city']}** on "
             f"**{nth_min['date'].strftime('%Y-%m-%d')}** "

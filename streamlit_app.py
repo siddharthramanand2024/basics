@@ -19,6 +19,15 @@ st.set_page_config(
 )
 
 
+def get_ordinal(n):
+    """Convert an integer into its ordinal representation."""
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    else:
+        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+    return str(n) + suffix
+
+
 @st.cache_data
 def load_dataset():
     """Load and prepare the weather dataset."""
@@ -343,46 +352,54 @@ elif section == "Statistics":
 elif section == "Ranking":
     st.title("Temperature Rankings")
 
+    n_records = st.number_input(
+        "Number of records to show (N)",
+        min_value=1,
+        max_value=100,
+        value=10)
+
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("7th Highest Temperature")
-        top_7 = df.nlargest(7, "temperature")
+        st.subheader(f"Exact {get_ordinal(n_records)} Highest Temperature")
+        top_n = df.nlargest(n_records, "temperature")
+        nth_max_df = top_n.iloc[[-1]]
         st.dataframe(
-            top_7[
+            nth_max_df[
                 ["date", "time", "city", "temperature",
                  "humidity", "pressure"]
             ],
             use_container_width=True,
             hide_index=True,
         )
-        seventh_max = top_7.iloc[-1]
+        nth_max = top_n.iloc[-1]
         st.info(
-            f"The 7th highest temperature is "
-            f"**{seventh_max['temperature']}°C** "
-            f"in **{seventh_max['city']}** on "
-            f"**{seventh_max['date'].strftime('%Y-%m-%d')}** "
-            f"at **{seventh_max['time']}**"
+            f"The {get_ordinal(n_records)} highest temperature is "
+            f"**{nth_max['temperature']}°C** "
+            f"in **{nth_max['city']}** on "
+            f"**{nth_max['date'].strftime('%Y-%m-%d')}** "
+            f"at **{nth_max['time']}**"
         )
 
     with col2:
-        st.subheader("3rd Lowest Temperature")
-        bottom_3 = df.nsmallest(3, "temperature")
+        st.subheader(f"Exact {get_ordinal(n_records)} Lowest Temperature")
+        bottom_n = df.nsmallest(n_records, "temperature")
+        nth_min_df = bottom_n.iloc[[-1]]
         st.dataframe(
-            bottom_3[
+            nth_min_df[
                 ["date", "time", "city", "temperature",
                  "humidity", "pressure"]
             ],
             use_container_width=True,
             hide_index=True,
         )
-        third_min = bottom_3.iloc[-1]
+        nth_min = bottom_n.iloc[-1]
         st.info(
-            f"The 3rd lowest temperature is "
-            f"**{third_min['temperature']}°C** "
-            f"in **{third_min['city']}** on "
-            f"**{third_min['date'].strftime('%Y-%m-%d')}** "
-            f"at **{third_min['time']}**"
+            f"The {get_ordinal(n_records)} lowest temperature is "
+            f"**{nth_min['temperature']}°C** "
+            f"in **{nth_min['city']}** on "
+            f"**{nth_min['date'].strftime('%Y-%m-%d')}** "
+            f"at **{nth_min['time']}**"
         )
 
 

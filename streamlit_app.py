@@ -343,46 +343,52 @@ elif section == "Statistics":
 elif section == "Ranking":
     st.title("Temperature Rankings")
 
+    n_records = st.number_input(
+        "Number of records to show (N)",
+        min_value=1,
+        max_value=100,
+        value=10)
+
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("7th Highest Temperature")
-        top_7 = df.nlargest(7, "temperature")
+        st.subheader(f"Top {n_records} Highest Temperatures")
+        top_n = df.nlargest(n_records, "temperature")
         st.dataframe(
-            top_7[
+            top_n[
                 ["date", "time", "city", "temperature",
                  "humidity", "pressure"]
             ],
             use_container_width=True,
             hide_index=True,
         )
-        seventh_max = top_7.iloc[-1]
+        nth_max = top_n.iloc[-1]
         st.info(
-            f"The 7th highest temperature is "
-            f"**{seventh_max['temperature']}°C** "
-            f"in **{seventh_max['city']}** on "
-            f"**{seventh_max['date'].strftime('%Y-%m-%d')}** "
-            f"at **{seventh_max['time']}**"
+            f"The {n_records}th highest temperature is "
+            f"**{nth_max['temperature']}°C** "
+            f"in **{nth_max['city']}** on "
+            f"**{nth_max['date'].strftime('%Y-%m-%d')}** "
+            f"at **{nth_max['time']}**"
         )
 
     with col2:
-        st.subheader("3rd Lowest Temperature")
-        bottom_3 = df.nsmallest(3, "temperature")
+        st.subheader(f"Top {n_records} Lowest Temperatures")
+        bottom_n = df.nsmallest(n_records, "temperature")
         st.dataframe(
-            bottom_3[
+            bottom_n[
                 ["date", "time", "city", "temperature",
                  "humidity", "pressure"]
             ],
             use_container_width=True,
             hide_index=True,
         )
-        third_min = bottom_3.iloc[-1]
+        nth_min = bottom_n.iloc[-1]
         st.info(
-            f"The 3rd lowest temperature is "
-            f"**{third_min['temperature']}°C** "
-            f"in **{third_min['city']}** on "
-            f"**{third_min['date'].strftime('%Y-%m-%d')}** "
-            f"at **{third_min['time']}**"
+            f"The {n_records}th lowest temperature is "
+            f"**{nth_min['temperature']}°C** "
+            f"in **{nth_min['city']}** on "
+            f"**{nth_min['date'].strftime('%Y-%m-%d')}** "
+            f"at **{nth_min['time']}**"
         )
 
 
